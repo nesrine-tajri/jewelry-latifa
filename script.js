@@ -1,14 +1,24 @@
-document.getElementById("contactButton").addEventListener("click", function () {
-    // Replace the number with your WhatsApp phone number in international format (without "+" or leading zeroes)
-    const phoneNumber = "212618800217"; // Example: 212123456789 for Morocco
-    const message = "Hello, I would like to inquire about your products.";
-    
-    // WhatsApp API link
-    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    
-    // Redirect the user to WhatsApp
-    window.open(whatsappLink, "_blank");
-  });
+
+
+
+function sendWhatsAppMessage(event, productName, productImage) {
+  event.preventDefault(); // Prevent the default link behavior
+
+  const phoneNumber = "212618800217"; // Your WhatsApp number
+  const message = `Hello, I would like to order the product: ${productName}. Here is the product image: ${window.location.origin}/${productImage}`;
+
+  // Check if the user is on mobile or desktop
+  const isMobile = /iPhone|Android/i.test(navigator.userAgent);
+
+  // Create the WhatsApp link
+  const whatsappLink = isMobile
+      ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+      : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+  // Open the WhatsApp link
+  window.open(whatsappLink, "_blank");
+}
+
 
 
 
