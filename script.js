@@ -1,12 +1,22 @@
 
 
 
-function sendWhatsAppMessage(event, productName, productImage) {
+function sendWhatsAppMessage(event, element) {
   event.preventDefault(); // Prevent the default link behavior
 
-  const phoneNumber = "212618800217"; // Your WhatsApp number
-  const message = `Hello, I would like to order the product: ${productName}. Here is the product image: ${window.location.origin}/${productImage}`;
+  const phoneNumber = "212695150956"; // Your WhatsApp number
 
+
+  
+ // Get the product details dynamically
+    const productContainer = element.closest(".product-idea");
+    const productName = productContainer.querySelector(".product-name").innerText;
+    const productPrice = productContainer.querySelector(".price").innerText;
+    const productImage = productContainer.querySelector(".product-image").src;
+
+    const message = `Hello, I would like to order the product: ${productName}. 
+    Price: ${productPrice}.
+    Here is the product image: ${productImage}`;
   // Check if the user is on mobile or desktop
   const isMobile = /iPhone|Android/i.test(navigator.userAgent);
 
