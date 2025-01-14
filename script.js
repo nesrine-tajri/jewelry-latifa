@@ -18,12 +18,13 @@ function sendWhatsAppMessage(event, element) {
     Price: ${productPrice}.
     Here is the product image: ${productImage}`;
   // Check if the user is on mobile or desktop
-  const isMobile = /iPhone|Android/i.test(navigator.userAgent);
+  // const isMobile = /iPhone|Android/i.test(navigator.userAgent);
 
-  // Create the WhatsApp link
-  const whatsappLink = isMobile
-      ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
-      : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+  // // Create the WhatsApp link
+  // const whatsappLink = isMobile
+  //     ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  //     : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 
   // Open the WhatsApp link
   window.open(whatsappLink, "_blank");
