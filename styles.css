@@ -7,18 +7,24 @@ body {
    
   color: #5f4b66; /* Text color */
 }
-header{
+header {
   text-align: center;
   background: #25d366;
   margin: 0;
-  
-  
-  
-  padding: 0.05px ;
-  overflow: hidden;
+  padding: 0;
+  overflow: hidden; /* Hides overflow to ensure the text moves offscreen */
   position: relative;
-
+  width: 100%; /* Ensure the header spans the full width of the screen */
 }
+
+.scrolling-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw; /* Use full viewport width */
+  overflow: hidden; /* Hide content that overflows the container */
+}
+
 .moving-text {
   display: inline-block;
   white-space: nowrap; /* Prevents text from wrapping */
@@ -26,15 +32,24 @@ header{
   font-weight: bold;
   color: #5f4b66;
   animation: moveText 5s linear infinite; /* Smooth infinite movement */
+  animation-delay: -2.5s;
 }
+
 @keyframes moveText {
   0% {
-    transform: translateX(100%); /* Start off the screen to the right */
+    transform: translateX(0vw); /* Start from 100% of viewport width */
   }
   100% {
-    transform: translateX(-100%); /* Move completely off the screen to the left */
+    transform: translateX(-100vw); /* Move offscreen to the left */
   }
 }
+@media (min-width: 768px) {
+  .moving-text {
+    
+    animation: moveText 20s linear infinite; /* Slightly slower on medium screens */
+  }
+}
+
 .navbar{
     display: flex;
     justify-content: space-between;
@@ -88,6 +103,44 @@ header{
 
 .options a:hover {
   color: #ff85b3;
+}
+
+.desktop-nav {
+  display: none; /* Initially hide on small screens */
+}
+
+.desktop-nav a {
+  color: #5f4b66;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.desktop-nav a:hover {
+  color: #ff85b3;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+  .options {
+    display: none; /* Hide the mobile dropdown on larger screens */
+  }
+
+
+.desktop-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.icon-container .main-icon {
+  display: none;
+}
+.main-logo{
+  display: none;
+}
 }
 
 
